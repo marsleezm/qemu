@@ -4770,15 +4770,6 @@ int initNbd(char* filename, int clientNum,Monitor* mon)
     NBDshared = clientNum;
 
     monitor_printf(mon,"Setting maximum client number to %i\n",NBDshared);
-//
-//    /* The client thread uses SIGTERM to interrupt the server.  A signal
-//     * handler ensures that "qemu-nbd -v -c" exits with a nice status code.
-//     */
-//    struct sigaction sa_sigterm;
-//    memset(&sa_sigterm, 0, sizeof(sa_sigterm));
-//    sa_sigterm.sa_handler = termsig_handler;
-//    sigaction(SIGTERM, &sa_sigterm, NULL);
-
 
 	monitor_printf(mon,"Initing...\n");
 	bdrv_init();
@@ -4814,8 +4805,6 @@ int initNbd(char* filename, int clientNum,Monitor* mon)
 		monitor_printf(mon, "Failed to connect to port\n");
 		return 1;
 	}
-
-	//memset(&client_thread, 0, sizeof(client_thread));
 
 	qemu_set_fd_handler2(socketFD, nbd_can_accept, nbd_accept, NULL,
 						 (void *)(uintptr_t)socketFD);

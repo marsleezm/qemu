@@ -39,9 +39,9 @@
 
 //#ifndef LEE_LOOP_CNT
 //#define LEE_LOOP_CNT
-//int leeloopCount = 0;
+//int loopCount = 0;
 //#else
-//extern leeloopCount;
+//extern loopCount;
 //#endif
 
 
@@ -52,7 +52,7 @@
 #ifndef QEMU_SYS_QUEUE_H_
 #define QEMU_SYS_QUEUE_H_
 
-extern   int   leeloopCount;
+extern   int   loopCount;
 
 /*
  * This file defines four types of data structures: singly-linked lists,
@@ -164,9 +164,9 @@ struct {                                                                \
 
 
 #define QLIST_FOREACH(var, head, field)                                 \
-        for ((var) = ((head)->lh_first),leeloopCount=0;                                \
-                (var)&&leeloopCount<1000;                                                  \
-                (var) = ((var)->field.le_next),++leeloopCount)
+        for ((var) = ((head)->lh_first),loopCount=0;                                \
+                (var)&&loopCount<1000;                                                  \
+                (var) = ((var)->field.le_next),++loopCount)
 
 
 #define QLIST_FOREACH_SAFE(var, head, field, next_var)                  \
@@ -405,9 +405,9 @@ struct {                                                                \
 } while (/*CONSTCOND*/0)
 
 #define QTAILQ_FOREACH(var, head, field)                                \
-        for ((var) = ((head)->tqh_first),leeloopCount=0;                               \
-                (var)&&leeloopCount<1000;                                                  \
-                (var) = ((var)->field.tqe_next),++leeloopCount)
+        for ((var) = ((head)->tqh_first),loopCount=0;                               \
+                (var)&&loopCount<1000;                                                  \
+                (var) = ((var)->field.tqe_next),++loopCount)
 
 #define QTAILQ_FOREACH_SAFE(var, head, field, next_var)                 \
         for ((var) = ((head)->tqh_first);                               \

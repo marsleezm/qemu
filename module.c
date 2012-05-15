@@ -17,7 +17,7 @@
 #include "qemu-queue.h"
 #include "module.h"
 
-int leeloopCount= 0;
+int loopCount= 0;
 
 typedef struct ModuleEntry
 {
